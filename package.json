@@ -6,10 +6,10 @@
   "author": "Elijah Prince <elijahprince73@gmail.com>",
   "license": "MIT",
   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "nodemon server.js",
-  "playground": "nodemon playground/mongodb-connect.js"  
-},
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "playground": "nodemon playground/mongodb-find.js"
+  },
   "dependencies": {
     "mongodb": "^3.0.2",
     "nodemon": "^1.14.12"

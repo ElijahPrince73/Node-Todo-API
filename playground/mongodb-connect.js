@@ -29,16 +29,16 @@ MongoClient.connect(URL, (err, client) => {
 	// 	console.log(JSON.stringify(result.ops, undefined, 2));
 	// });
 
-	// database.collection(Users).insertOne({
-	// 	name: "Elijah",
-	// 	age: 21,
-	// 	location: 'Las Vegas'
-	// }, (err, result) => {
-	// 	if (err) {
-	// 		return console.log('Unable to insert user');
-	// 	}
-	// 	console.log(JSON.stringify(result.ops[0]._id.getTimestamp(), undefined, 2));
-	// })
+	database.collection(Users).insertOne({
+		name: "ricky",
+		age: 21,
+		location: 'Las Vegas'
+	}, (err, result) => {
+		if (err) {
+			return console.log('Unable to insert user');
+		}
+		console.log(JSON.stringify(result.ops[0]._id.getTimestamp(), undefined, 2));
+	})
 
 	client.close();
 });
