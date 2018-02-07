@@ -20,8 +20,8 @@ MongoClient.connect(URL, (err, client) => {
 	const Users = 'Users'
 
 	// database.collection(TodosDB).insertOne({
-	// 	text: 'something to do',
-	// 	completed: false
+	// 	text: 'Eat Food',
+	// 	completed: true
 	// }, (err, result) => {
 	// 	if (err) {
 	// 		return console.log('Unable to insert todo', err);
@@ -30,7 +30,7 @@ MongoClient.connect(URL, (err, client) => {
 	// });
 
 	database.collection(Users).insertOne({
-		name: "ricky",
+		name: "Rocko",
 		age: 21,
 		location: 'Las Vegas'
 	}, (err, result) => {

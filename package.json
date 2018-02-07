@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "playground": "nodemon playground/mongodb-find.js"
+    "playground": "nodemon playground/mongodb-delete.js"
   },
   "dependencies": {
     "mongodb": "^3.0.2",
