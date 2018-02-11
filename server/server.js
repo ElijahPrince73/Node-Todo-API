@@ -1,70 +1,32 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const bodyParser = require('body-parser');
 
-mongoose.Promise = global.Promise
+const {
+	mongoose
+} = require('./db/mongoose');
+const {
+	User
+} = require('./models/user.js');
+const {
+	Todo
+} = require('./models/todo.js');
 
-mongoose.connect('mongodb://localhost:27017/TodoApp')
-// Todos
+const app = express()
 
-// Step 1: create a mongoose model
-// ES6 class
-// const Todo = mongoose.model('Todo', {
-// 	text: {
-// 		type: String,
-// 		required: true,
-// 		minLength: 1,
-// 		trim: true
-// 	},
-// 	completed: {
-// 		type: Boolean,
-// 		default: false
-// 	},
-// 	completedAt: {
-// 		type: Number,
-// 		default: null
-// 	}
-// })
+app.use(bodyParser.json())
 
-// step 2: create data for mongoose model
-// creating object with only todo
-// const newTodo = new Todo({
-// 	text: 'Cook Dinner'
-// })
+app.post('/todos', (req, res) => {
+	const todo = new Todo({
+		text: req.body.text
+	})
 
-// Step 3: tell mongoose to create a new model in database
-// Mongoose then creates a new todo using the .save() function
-// newTodo.save().then((doc) => {
-// 	console.log('Saved Todo', doc);
-// }, (e) => {
-// 	console.log('Unable to save todo');
-// })
+	todo.save().then((doc) => {
+		res.send(doc)
+	}, (e) => {
+		res.status(400).send(e)
+	})
+})
 
-// Challenge
-// const todo1 = new Todo({
-// 	text: 'Edit this vieo',
-// 	completed: false,
-// })
-// todo1.save().then((doc) => {
-// 	console.log('Saved Todo', JSON.stringify(doc, undefined, 2));
-// }, (e) => {
-// 	console.log('Unable to save todo', e);
-// })
-
-// Users
-// const User = mongoose.model('Users', {
-// 	email: {
-// 		type: String,
-// 		minLength: 1,
-// 		required: true,
-// 		trim: true
-// 	}
-// })
-//
-// const user = new User({
-// 	email: 'elijahprince@gmail.com'
-// })
-//
-// user.save().then((result) => {
-// 	console.log('Saved User', JSON.stringify(result, undefined, 2));
-// }, (e) => {
-// 	console.log('Unable to create user', e);
-// })
+app.listen(3000, () => {
+	console.log('Started on port 3000');
+})

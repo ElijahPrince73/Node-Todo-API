@@ -7,11 +7,14 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "nodemon server/server.js",
     "playground": "nodemon playground/mongodb-delete.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
     "mongodb": "^3.0.2",
+    "mongoose": "^5.0.3",
     "nodemon": "^1.14.12"
   }
 }
