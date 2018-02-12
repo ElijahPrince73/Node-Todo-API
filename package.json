@@ -6,7 +6,6 @@
   "author": "Elijah Prince <elijahprince73@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
     "playground": "nodemon playground/mongodb-delete.js"
   },

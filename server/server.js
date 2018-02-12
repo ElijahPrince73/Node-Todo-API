@@ -27,6 +27,20 @@ app.post('/todos', (req, res) => {
 	})
 })
 
-app.listen(3000, () => {
-	console.log('Started on port 3000');
+app.get('/todos', (req, res) => {
+	Todo.find().then((todos) => {
+		res.send({
+			todos
+		})
+	}, (e) => {
+		res.status(400).send(e)
+	})
 })
+
+app.listen(4000, () => {
+	console.log('Started on port 4000');
+})
+
+module.exports = {
+	app
+}
