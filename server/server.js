@@ -62,6 +62,24 @@ app.get('/todos/:id', (req, res) => {
 	})
 })
 
+// Delete single todo
+app.delete('/todos/:id', (req, res) => {
+	const id = req.params.id
+
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send('Invalid Id')
+	}
+	Todo.findByIdAndRemove(id).then((todo) => {
+		if (!todo) {
+			return res.status(404).send({})
+		}
+		res.send({
+			todo
+		})
+	}).catch((err) => {
+		res.status(404).send('Unable to delete that todo')
+	})
+})
 app.listen(port, () => {
 	console.log(`Started on port ${port}`);
 })
