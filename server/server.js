@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -20,6 +21,7 @@ const port = process.env.PORT || 4000
 
 app.use(bodyParser.json())
 
+// POST a Todo
 app.post('/todos', (req, res) => {
 	const todo = new Todo({
 		text: req.body.text
@@ -80,6 +82,39 @@ app.delete('/todos/:id', (req, res) => {
 		res.status(404).send('Unable to delete that todo')
 	})
 })
+
+// Patch
+app.patch('/todos/:id', (req, res) => {
+	const id = req.params.id
+	const body = _.pick(req.body, ['text', 'completed'])
+
+	if (!ObjectID.isValid(id)) {
+		return res.status(404).send('Invalid Id')
+	}
+
+	if (_.isBoolean(body.completed) && body.completed) {
+		body.completedAt = new Date().getTime()
+	} else {
+		body.completed = false
+		body.completedAt = null
+	}
+
+	Todo.findOneAndUpdate(id, {
+		$set: body
+	}, {
+		new: true
+	}).then((todo) => {
+		if (!todo) {
+			return res.status(404).send()
+		}
+		res.send({
+			todo
+		})
+	}).catch((err) => {
+		res.status(400).send('Unable to update that todo')
+	})
+})
+
 app.listen(port, () => {
 	console.log(`Started on port ${port}`);
 })
