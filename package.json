@@ -11,8 +11,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "playground": "nodemon playground/mongodb-delete.js",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js"
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha server/**/*.test.js",
+    "test-watch": "nodemon --exec 'npm test'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,5 +26,11 @@
     "mongoose": "^5.0.3",
     "nodemon": "^1.14.12",
     "validator": "^9.4.0"
-  }
+  },
+  "devDependencies": {
+      "expect": "^1.20.2",
+      "mocha": "^3.0.2",
+      "nodemon": "^1.10.2",
+      "supertest": "^2.0.0"
+    }
 }
